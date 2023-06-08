@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include("./partials/head.ejs") %>
+
+	<body>
+		<a href="/" class="btn btn-info">Back</a>
+
+		<div
+			class="card text-center m-auto mt-4 mb-4 border-info"
+			style="width: 28rem"
+		>
+			<img
+				src="https://www.techbooky.com/wp-content/uploads/2022/09/Blogging-Platforms.jpeg"
+				class="card-img-top"
+				alt="blog"
+			/>
+			<div class="card-body">
+				<h5 class="card-title">Post</h5>
+				<p class="card-text">Message</p>
+
+				<form action="" method="post">
+					<button
+						type="button"
+						class="btn btn-warning"
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModal"
+					>
+						Edit
+					</button>
+					<button class="btn btn-danger">Delete</button>
+				</form>
+			</div>
+
+			<button
+				class="btn btn-primary"
+				type="button"
+				data-bs-toggle="modal"
+				data-bs-target="#commentModal"
+			>
+				Make a Comment
+			</button>
+			<div class="card-footer text-muted">Last update: 3 hours ago</div>
+		</div>
+
+		<!-- Comments -->
+		<%- include("./partials/comment.ejs") %> 
+
+		<!-- Edit Modal -->
+		<%- include("./partials/editModal.ejs") %>
+
+		<!-- Comment Modal -->
+		<%- include("./partials/commentModal.ejs") %>
+	</body>
+</html>
