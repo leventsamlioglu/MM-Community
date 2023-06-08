@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
 	{
-		message: {
-			type: String,
-			required: true,
-		},
 		title:{
 			type:String,
+			required: true,
+		},
+		question: {
+			type: String,
 			required: true,
 		},
 		owner: {
