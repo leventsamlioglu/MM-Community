@@ -2,14 +2,30 @@ const Post = require("../models/postModel");
 
 const homePage = (req, res) => {
 	Post.find()
+		.populate("owner")
 		.sort({ createdAt: -1 })
 		.then((result) => {
-			res.render("index", { posts: result});
+			res.render("homePage", { posts: result });
 		})
 		.catch((err) => console.log(err));
 };
 
-const postCreate = (req, res) => {};
+const postCreate = (req, res) => {
+	console.log(req.params.id);
+	let postObj = {
+		...req.body,
+		owner: req.params.id,
+	};
+	const newPost = new Post(postObj);
+	newPost
+		.save()
+		.then(() => {
+			res.redirect("/");
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
 
 const postDetail = (req, res) => {
 	res.render("details");
@@ -35,9 +51,7 @@ const signupPost = async (req, res) => {};
 
 const loginPost = async (req, res) => {};
 
-const logoutGet = (req, res) => {
-
-};
+const logoutGet = (req, res) => {};
 
 module.exports = {
 	homePage,

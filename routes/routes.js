@@ -5,15 +5,14 @@ const controllers = require("../controllers/controllers");
 
 routes.get("/", controllers.homePage);
 
-routes.get("/posts/create/", controllers.postDetail);
+routes.post('/', controllers.postCreate)
 
+routes.get("/posts/create/", controllers.postDetail);
 
 // Login & Sign Up
 routes.get('/signup', controllers.signupGet);
 
-
 routes.get('/login', controllers.loginGet);
-
 
 // Logout
 
