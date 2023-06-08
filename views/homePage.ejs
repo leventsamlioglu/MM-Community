@@ -24,20 +24,15 @@
 			</ul>
 		</nav>
 		<div class="container">
-			<form action="/" method="post">
-				<div class="form-group mb-3">
-					<label for="title">Title</label>
-					<input class="form-control" id="title" name="title" />
-					<label for="question">Question</label>
-					<textarea
-						class="form-control"
-						id="question"
-						name="question"
-						rows="3"
-					></textarea>
-				</div>
-				<button type="submit" class="btn btn-success">Send!</button>
-			</form>
+			<button
+						type="button"
+						class="btn btn-warning btn-lg mb-4"
+						data-bs-toggle="modal"
+						data-bs-target="#exampleModal"
+						style="width: 100%;"
+					>
+						Ask a question!
+			</button>
 
 			<div class="users">
 				<h2 class="m-auto mb-4 text-center">All Posts</h2>
@@ -71,5 +66,8 @@
 			</div>
 		</div>
 		<div class="text-center mt-4"><%- include("./partials/footer.ejs") %></div>
+
+		<!-- Edit Modal -->
+		<%- include("./partials/postModal.ejs") %>
 	</body>
 </html>
