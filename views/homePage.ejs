@@ -23,23 +23,25 @@
 				</li>
 			</ul>
 		</nav>
+
 		<div class="container">
 			<button
-						type="button"
-						class="btn btn-warning btn-lg mb-4"
-						data-bs-toggle="modal"
-						data-bs-target="#exampleModal"
-						style="width: 100%;"
-					>
-						Ask a question!
+				type="button"
+				class="btn btn-warning btn-lg mb-4"
+				data-bs-toggle="modal"
+				data-bs-target="#exampleModal"
+				style="width: 100%"
+			>
+				Ask a question!
 			</button>
 
 			<div class="users">
+				<% if (posts.length > 0) { %>
 				<h2 class="m-auto mb-4 text-center">All Posts</h2>
-				<% if(posts) { posts.forEach((post)=>{ %> <% let formattedDate =
-				post.createdAt.getDate()+ "-" + (post.createdAt.getMonth()+1) + "-"
-				+post.createdAt.getFullYear() %>
 				<div class="row row-cols-4 g-4">
+					<% posts.forEach(post => { %> <% let formattedDate =
+					post.createdAt.getDate()+ "-" + (post.createdAt.getMonth()+1) + "-"
+					+post.createdAt.getFullYear() %>
 					<div class="col">
 						<div class="card h-100 border-info">
 							<img
@@ -47,13 +49,15 @@
 								class="card-img-top"
 								alt="..."
 							/>
+
 							<div class="card-body">
 								<h5 class="card-title"><%= post.title %></h5>
-								<p class="card-text"><%= post.question %></p>
+								<p class="card-text"><%= post.question.slice(0,100) %>...</p>
 								<div class="mb-2">
 									<a href="/posts/create/" class="fst-italic">See more...</a>
 								</div>
 							</div>
+
 							<div class="card-footer">
 								<small class="text-muted"
 									>Posted by ... at: <%= formattedDate %>
@@ -61,8 +65,8 @@
 							</div>
 						</div>
 					</div>
+					<% }) %> <% } else { %> There are no blogs to display... <% } %>
 				</div>
-				<% }) }%>
 			</div>
 		</div>
 		<div class="text-center mt-4"><%- include("./partials/footer.ejs") %></div>
