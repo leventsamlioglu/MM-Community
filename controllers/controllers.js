@@ -29,8 +29,15 @@ const postCreate = (req, res) => {
 };
 
 const postDetail = (req, res) => {
-	res.render("details");
-};
+
+		Post.findbyId(req.params.id)
+		.then((data)=>{res.render("details",{userPost:data})})
+		.catch((err)=>console.log(err))
+
+
+
+	
+}
 
 const postDelete = (req, res) => {};
 

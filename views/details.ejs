@@ -15,8 +15,15 @@
 				alt="blog"
 			/>
 			<div class="card-body">
-				<h5 class="card-title">Post</h5>
-				<p class="card-text">Message</p>
+				<%if(userPost){ %>
+					<h5 class="card-title"><%=userPost.title %></h5>
+				<% }%>
+
+				<%if(userPost){ %>
+					<p class="card-text"><%=userPost.question %></p>
+				<% }%>
+				
+				
 
 				<form action="" method="post">
 					<button

@@ -6,7 +6,7 @@ routes.get("/", controllers.homePage);
 
 routes.post("/", controllers.postCreate);
 
-routes.get("/posts/create/", controllers.postDetail);
+routes.get("/posts/create/:id", controllers.postDetail);
 
 // Login & Sign Up
 routes.get("/signup", controllers.signupGet);

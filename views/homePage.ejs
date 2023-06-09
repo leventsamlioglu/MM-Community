@@ -51,7 +51,7 @@
 								<h5 class="card-title"><%= post.title %></h5>
 								<p class="card-text"><%= post.question %></p>
 								<div class="mb-2">
-									<a href="/posts/create/" class="fst-italic">See more...</a>
+									<a href="/posts/create/<%= post.owner._id %>" class="fst-italic">See more...</a>
 								</div>
 							</div>
 							<div class="card-footer">
