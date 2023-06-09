@@ -15,6 +15,8 @@ routes.post("/signup", controllers.signupPost);
 
 routes.get("/login", controllers.loginGet);
 
+routes.post("/login", controllers.loginPost)
+
 // Logout
 
 routes.get("/logout", controllers.logoutGet);

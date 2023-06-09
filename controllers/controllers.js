@@ -1,5 +1,6 @@
 const Post = require("../models/postModel");
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
 
 const homePage = (req, res) => {
 	Post.find()
@@ -12,7 +13,6 @@ const homePage = (req, res) => {
 };
 
 const postCreate = (req, res) => {
-	console.log(req.params.id);
 	let postObj = {
 		...req.body,
 		owner: req.params.id,
@@ -45,7 +45,7 @@ const signupGet = (req, res) => {
 };
 
 const loginGet = (req, res) => {
-	res.render("login");
+	res.render("login", { error: null });
 };
 
 const signupPost = async (req, res) => {
@@ -69,9 +69,23 @@ const signupPost = async (req, res) => {
 	}
 };
 
-const loginPost = async (req, res) => {};
+const loginPost = async (req, res) => {
+	// Check if this user is already in the DB.
+	const { email, password } = req.body;
+	try {
+		const user = await User.login(email, password);
+		const userToken = jwt.sign({ user }, process.env.JWT_TEXT);
+		res.cookie("userToken", userToken, { httpOnly: true });
+		res.redirect("/");
+	} catch (error) {
+		res.render("login", { error });
+	}
+};
 
-const logoutGet = (req, res) => {};
+const logoutGet = (req, res) => {
+	res.clearCookie('userToken');
+    res.redirect('/')
+};
 
 module.exports = {
 	homePage,
