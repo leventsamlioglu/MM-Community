@@ -1,4 +1,5 @@
 const Post = require("../models/postModel");
+const User = require("../models/userModel");
 
 const homePage = (req, res) => {
 	Post.find()
@@ -47,7 +48,26 @@ const loginGet = (req, res) => {
 	res.render("login");
 };
 
-const signupPost = async (req, res) => {};
+const signupPost = async (req, res) => {
+	// Check if this user is already in the DB.
+	let existedUser = await User.findOne({ email: req.body.email });
+
+	if (existedUser) {
+		res.render("login", {
+			error: "user is exist",
+		});
+	} else {
+		let newUser = new User(req.body);
+		newUser
+			.save()
+			.then(() => {
+				res.redirect("/");
+			})
+			.catch((err) => {
+				throw err;
+			});
+	}
+};
 
 const loginPost = async (req, res) => {};
 
