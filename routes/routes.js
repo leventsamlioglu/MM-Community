@@ -9,6 +9,8 @@ routes.post("/sendPost/:id",auth.checkTokenPage, controllers.postCreate);
 
 routes.get("/posts/create/:id", controllers.postDetail);
 
+routes.post("/comments/create/:id",auth.checkTokenPage, controllers.commentCreate);
+
 // Login & Sign Up
 routes.get("/signup", controllers.signupGet);
 
