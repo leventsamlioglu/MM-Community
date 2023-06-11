@@ -6,8 +6,12 @@ const commentSchema = new mongoose.Schema({
 		required: [true, "Comment can not be empty!"],
 	},
 	owner: {
-		type: String,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: "user",
+	},
+	user: {
+		type: String,
+		ref: "user"
 	},
 });
 

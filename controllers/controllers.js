@@ -32,10 +32,10 @@ const postCreate = (req, res) => {
 const postDetail = (req, res) => {
 	Post.findById(req.params.id)
 		.then((result1) => {
-			Comment.find()
+			Comment.find({ owner: req.params.id })
 				.sort({ createdAt: -1 })
 				.then((result2) => {
-					res.render("details", { post:result1, comments: result2 });
+					res.render("details", { post: result1, comments: result2 });
 				})
 				.catch((err) => console.log(err));
 			// res.render("details", { post: result1 });
@@ -56,7 +56,8 @@ const postEdit = (req, res) => {};
 const commentCreate = (req, res) => {
 	let commentObj = {
 		...req.body,
-		owner: res.locals.username,
+		owner: req.params.id,
+		user: res.locals.username,
 	};
 
 	const newComment = new Comment(commentObj);
@@ -64,7 +65,7 @@ const commentCreate = (req, res) => {
 		.save()
 		.then((result) => {
 			// res.render("details", { post: result });
-			res.redirect("/")
+			res.redirect("/");
 		})
 		.catch((err) => {
 			console.log(err);
