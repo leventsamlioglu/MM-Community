@@ -1,17 +1,11 @@
 
 const jwt = require('jsonwebtoken');
 
-
-
-
-
 const checkTokenHome = (req,res,next) => {
     const isToken= req.cookies.userToken;
 
     if(!isToken){
-
         res.redirect('/signup')
-        
     }else {
         
         jwt.verify(isToken, process.env.JWT_TEXT, async (err, userInfo) => {
@@ -19,17 +13,12 @@ const checkTokenHome = (req,res,next) => {
                 console.log(err);
             } else {
                res.locals.user = userInfo.user.username;
-              
                res.locals.userId = userInfo.user._id;
-                console.log(userInfo.user._id);
                 next();
             }
         })
     }
-
 }
-
-
 
 const checkTokenPage = (req,res,next) => {
     const isToken= req.cookies.userToken;
@@ -39,9 +28,8 @@ const checkTokenPage = (req,res,next) => {
             if(err){
                 console.log(err);
             } else {
-              
                res.locals.userId = userInfo.user._id;
-                
+               res.locals.username = userInfo.user.username
                 next();
             }
         })
@@ -49,7 +37,6 @@ const checkTokenPage = (req,res,next) => {
         res.locals.user = false;
         res.redirect('signup')
     }
-
 }
 
 
