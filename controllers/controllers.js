@@ -15,8 +15,10 @@ const homePage = (req, res) => {
 const postCreate = (req, res) => {
 	let postObj = {
 		...req.body,
-		owner: req.params.id,
+		owner: res.locals.userId,
 	};
+
+	console.log(postObj);
 	const newPost = new Post(postObj);
 	newPost
 		.save()
@@ -61,7 +63,7 @@ const signupPost = async (req, res) => {
 		newUser
 			.save()
 			.then(() => {
-				res.redirect("/");
+				res.redirect("/login");
 			})
 			.catch((err) => {
 				throw err;

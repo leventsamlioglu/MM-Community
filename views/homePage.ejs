@@ -8,23 +8,26 @@
 			<a class="navbar-brand" href="/">Matrix Master Community</a>
 
 			<ul class="navbar-nav mr-auto">
+				<% if(user) { %>
 				<li class="nav-item active">
-					<p class="nav-link">Welcome</p>
+					<p class="nav-link">Welcome <%= user%></p>
 				</li>
 				<li class="nav-item active">
 					<a href="/logout" class="nav-link">Logout</a>
 				</li>
-
+				<% } else { %> 
 				<li class="nav-item active">
 					<a href="/login" class="nav-link">Login</a>
 				</li>
 				<li class="nav-item active">
 					<a href="/signup" class="nav-link">Sign up</a>
 				</li>
+				<% } %>
 			</ul>
 		</nav>
 
 		<div class="container">
+			<% if(user) { %>
 			<button
 				type="button"
 				class="btn btn-warning btn-lg mb-4"
@@ -34,7 +37,7 @@
 			>
 				Ask a question!
 			</button>
-
+			<% } %>
 			<div class="users">
 				<% if (posts.length > 0) { %>
 				<h2 class="m-auto mb-4 text-center">All Posts</h2>
@@ -60,7 +63,7 @@
 
 							<div class="card-footer">
 								<small class="text-muted"
-									>Posted by ... at: <%= formattedDate %>
+									>Posted by <%= post.owner.username %> at: <%= formattedDate %>
 								</small>
 							</div>
 						</div>

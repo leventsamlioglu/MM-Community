@@ -1,21 +1,22 @@
 const express = require("express");
 const routes = express.Router();
 const controllers = require("../controllers/controllers");
+const auth = require("../middleware/authMiddleware");
 
-routes.get("/", controllers.homePage);
+routes.get("/",auth.checkUserToken, controllers.homePage);
 
-routes.post("/", controllers.postCreate);
+routes.post("/", auth.checkUserToken, controllers.postCreate);
 
 routes.get("/posts/create/", controllers.postDetail);
 
 // Login & Sign Up
-routes.get("/signup", controllers.signupGet);
+routes.get("/signup", auth.checkToken, controllers.signupGet);
 
 routes.post("/signup", controllers.signupPost);
 
 routes.get("/login", controllers.loginGet);
 
-routes.post("/login", controllers.loginPost)
+routes.post("/login", controllers.loginPost);
 
 // Logout
 
