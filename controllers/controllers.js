@@ -29,10 +29,19 @@ const postCreate = (req, res) => {
 };
 
 const postDetail = (req, res) => {
-	res.render("details");
+
+	Post.findById(req.params.id)
+		.then((result) => {
+			res.render("details", { post: result });
+		})
+		.catch((err) => console.log(err));
+	
 };
 
-const postDelete = (req, res) => {};
+const postDelete = (req, res) => {
+	Post.findByIdAndDelete(req.params.id)
+    .then(()=>res.redirect('/')).catch((err)=>{console.log(err)}
+	)};
 
 const postEdit = (req, res) => {};
 
@@ -57,10 +66,15 @@ const signupPost = async (req, res) => {
 			error: "user is exist",
 		});
 	} else {
-		let newUser = new User(req.body);
-		newUser
+		let user = new User(req.body);
+		user
 			.save()
 			.then(() => {
+				
+				const userToken = jwt.sign({ user }, process.env.JWT_TEXT);
+		
+				res.cookie("userToken", userToken, { httpOnly: true });
+
 				res.redirect("/");
 			})
 			.catch((err) => {
@@ -74,7 +88,9 @@ const loginPost = async (req, res) => {
 	const { email, password } = req.body;
 	try {
 		const user = await User.login(email, password);
+		console.log(user);
 		const userToken = jwt.sign({ user }, process.env.JWT_TEXT);
+		
 		res.cookie("userToken", userToken, { httpOnly: true });
 		res.redirect("/");
 	} catch (error) {
