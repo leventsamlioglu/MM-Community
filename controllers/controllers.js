@@ -72,7 +72,13 @@ const commentCreate = (req, res) => {
 		});
 };
 
-const commentDelete = (req, res) => {};
+const commentDelete = (req, res) => {
+	Comment.findByIdAndDelete(req.params.id)
+		.then(() => res.redirect("/"))
+		.catch((err) => {
+			console.log(err);
+		});
+};
 // Login & Sign Up
 
 const signupGet = (req, res) => {

@@ -7,13 +7,15 @@ routes.get("/", auth.checkTokenHome, controllers.homePage);
 
 routes.post("/sendPost/:id", auth.checkTokenPage, controllers.postCreate);
 
-routes.get("/posts/create/:id", controllers.postDetail);
+routes.get("/posts/create/:id", auth.checkTokenPage, controllers.postDetail);
 
 routes.post(
 	"/comments/create/:id",
 	auth.checkTokenPage,
 	controllers.commentCreate
 );
+
+routes.post("/comments/delete/:id",controllers.commentDelete)
 
 // Login & Sign Up
 routes.get("/signup", controllers.signupGet);
