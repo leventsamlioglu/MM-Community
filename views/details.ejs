@@ -1,9 +1,14 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<%- include("./partials/head.ejs") %>
 
+	
+	
 	<body>
-		<a href="/" class="btn btn-info">Back</a>
+	<a href="/" class="btn btn-info">Back</a>
 
 		<div
 			class="card text-center m-auto mt-4 mb-4 border-info"
@@ -15,10 +20,10 @@
 				alt="blog"
 			/>
 			<div class="card-body">
-				<h5 class="card-title">Post</h5>
-				<p class="card-text">Message</p>
+				<h5 class="card-title">Post :<%= post.title%></h5>
+				<p class="card-text">Message:<%= post.question%></p>
 
-				<form action="" method="post">
+				<form action="/editPost/<%= post._id%>" method="post">
 					<button
 						type="button"
 						class="btn btn-warning"
@@ -27,6 +32,8 @@
 					>
 						Edit
 					</button>
+				</form>
+				<form action="/postDelete/<%= post._id%>" method="post">
 					<button class="btn btn-danger">Delete</button>
 				</form>
 			</div>
@@ -50,5 +57,13 @@
 
 		<!-- Comment Modal -->
 		<%- include("./partials/commentModal.ejs") %>
-	</body>
+</body>
 </html>
+
+
+
+
+
+
+	
+

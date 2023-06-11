@@ -9,17 +9,23 @@
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<p class="nav-link">Welcome</p>
+					<%	if(user) {%>
+						<p class="nav-link">Welcome: <i><%= user %></i></p>
+						<%}%>
 				</li>
 				<li class="nav-item active">
 					<a href="/logout" class="nav-link">Logout</a>
 				</li>
-
+				<%	if(!user) {%>
 				<li class="nav-item active">
 					<a href="/login" class="nav-link">Login</a>
 				</li>
+				<%}%>
+				<%	if(!user) {%>
 				<li class="nav-item active">
-					<a href="/signup" class="nav-link">Sign up</a>
+					
+							<a href="/signup" class="nav-link"> Sign up </a>
+							<%}%>
 				</li>
 			</ul>
 		</nav>
@@ -54,13 +60,17 @@
 								<h5 class="card-title"><%= post.title %></h5>
 								<p class="card-text"><%= post.question.slice(0,100) %>...</p>
 								<div class="mb-2">
-									<a href="/posts/create/" class="fst-italic">See more...</a>
+									<a href="/posts/create/<%= post._id %>" class="fst-italic">See more...</a>
 								</div>
 							</div>
 
 							<div class="card-footer">
 								<small class="text-muted"
-									>Posted by ... at: <%= formattedDate %>
+									>
+									
+										Posted by   <i><%= post.owner.username.toString() %></i>
+										
+									at: <%= formattedDate %>
 								</small>
 							</div>
 						</div>
