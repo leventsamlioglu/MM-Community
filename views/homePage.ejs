@@ -1,85 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-	<%- include("./partials/head.ejs") %>
-	<body>
-		<nav
-			class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between mb-4 p-4"
-		>
-			<a class="navbar-brand" href="/">Matrix Master Community</a>
+    <%- include("./partials/head.ejs") %>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap" rel="stylesheet">
+    <body>
+        <nav
+            class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4 p-4 w-100"
+        >
+            <a class="navbar-brand" href="/">Matrix Master Community</a>
 
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<% if(user) {%>
-					<p class="nav-link">Welcome: <i><%= user %></i></p>
-				</li>
-				<li class="nav-item active">
-					<a href="/logout" class="nav-link">Logout</a>
-				</li>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <% if(user) {%>
+                    <p class="nav-link">Welcome: <i><%= user %></i></p>
+                </li>
+                <li class="nav-item active">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
 
-				<% } else {%>
-				<li class="nav-item active">
-					<a href="/login" class="nav-link">Login</a>
-				</li>
-				<li class="nav-item active">
-					<a href="/signup" class="nav-link"> Sign up </a>
-					<%}%>
-				</li>
-			</ul>
-		</nav>
-		<div class="container">
-			<% if(user) {%>
-			<button
-				type="button"
-				class="btn btn-warning btn-lg mb-4"
-				data-bs-toggle="modal"
-				data-bs-target="#exampleModal"
-				style="width: 100%"
-			>
-				Ask a question!
-			</button>
-			<%}%>
+                <% } else {%>
+                <li class="nav-item active">
+                    <a href="/login" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/signup" class="nav-link"> Sign up </a>
+                    <%}%>
+                </li>
+            </ul>
+        </nav>
+        <div class="container">
 
-			<div class="users">
-				<% if (posts.length > 0) { %>
-				<h2 class="m-auto mb-4 text-center">All Posts</h2>
-				<div class="row row-cols-4 g-4">
-					<% posts.forEach(post => { %> <% let formattedDate =
-					post.createdAt.getDate()+ "-" + (post.createdAt.getMonth()+1) + "-"
-					+post.createdAt.getFullYear() %>
-					<div class="col">
-						<div class="card h-100 border-info">
-							<img
-								src="https://www.ldatschool.ca/wp-content/uploads/2017/07/shutterstock_230363287-1024x1024.jpg"
-								class="card-img-top"
-								alt="..."
-							/>
+            
 
-							<div class="card-body">
-								<h5 class="card-title"><%= post.title %></h5>
-								<p class="card-text"><%= post.question.slice(0,100) %>...</p>
-								<div class="mb-2">
-									<a href="/posts/create/<%= post._id %>" class="fst-italic"
-										>See more...</a
-									>
-								</div>
-							</div>
+            <% if(user) {%>
+            <!-- <button
+                type="button"
+                class="btn btn-warning btn-lg mb-4"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                style="width: 100%"
+            >
+                Ask a question!
+            </button> -->
+            <%}%>
 
-							<div class="card-footer">
-								<small class="text-muted">
-									Posted by <i><%= post.owner.username.toString() %></i>
+            <div class="users">
+                <% if (posts.length > 0) { %>
+                <h2 class="m-auto mb-4 mt-4 fs-1 text-center">All Posts</h2>
+                <div class="row row-cols-4 g-4">
+                    <% posts.forEach(post => { %> <% let formattedDate =
+                    post.createdAt.getDate()+ "-" + (post.createdAt.getMonth()+1) + "-"
+                    +post.createdAt.getFullYear() %>
+                    <div class="col">
+                        <div class="card h-100 border-info">
+                            <img
+                                src="https://www.ldatschool.ca/wp-content/uploads/2017/07/shutterstock_230363287-1024x1024.jpg"
+                                class="card-img-top"
+                                alt="..."
+                            />
 
-									at: <%= formattedDate %>
-								</small>
-							</div>
-						</div>
-					</div>
-					<% }) %> <% } else { %> There are no blogs to display... <% } %>
-				</div>
-			</div>
-		</div>
-		<div class="text-center mt-4"><%- include("./partials/footer.ejs") %></div>
+                            <div class="card-body">
+                                <h5 class="card-title"><%= post.title %></h5>
+                                <p class="card-text"><%= post.question.slice(0,100) %>...</p>
+                                <div class="mb-2">
+                                    <a href="/posts/create/<%= post._id %>" class="fst-italic"
+                                        >See more...</a
+                                    >
+                                </div>
+                            </div>
 
-		<!-- Edit Modal -->
-		<%- include("./partials/postModal.ejs") %>
-	</body>
+                            <div class="card-footer">
+                                <small class="text-muted">
+                                    Posted by <i><%= post.owner.username.toString() %></i>
+
+                                    at: <%= formattedDate %>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %> <% } else { %> There are no blogs to display... <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4"><%- include("./partials/footer.ejs") %></div>
+
+        <!-- Edit Modal -->
+        <%- include("./partials/postModal.ejs") %>
+    </body>
 </html>
+
+<style>
+:root{
+
+    --color-blue: #83af9b;
+    --color-green: #c8c8a9;
+    --color-brown: #774f38;
+    --color-beige: #ece5ce;
+    --color-yellow: #f9cdad;
+    --color-pink: #fe4365;
+
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  font: 1.3vw system-ui;
+  background-color: var(--color-yellow);
+}
+
+nav {
+    background-color: steelblue;
+}
+
+.btn-anime {
+  transform: translateY(0px);
+  animation: float 5s ease-in-out infinite;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 15px;
+  color: var(--color-brown);
+  background-color: var(--color-beige);
+  padding: 50px;
+  border-radius: 11px;
+  position: relative;
+  box-shadow: 20px 20px var(--color-blue);
+  font-family: "Baloo 2", cursive;
+  border: 1px solid var(--color-green);
+}
+.btn-anime:after {
+  transform: translateY(0px);
+  animation: float2 5s ease-in-out infinite;
+  content: ".";
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px var(--color-green);
+  -webkit-text-fill-color: var(--color-beige);
+  border: 1px solid var(--color-green);
+  text-shadow: 22px 22px var(--color-blue);
+  text-align: left;
+  font-size: 55px;
+  width: 55px;
+  height: 11px;
+  line-height: 30px;
+  border-radius: 11px;
+  background-color: var(--color-beige);
+  position: absolute;
+  display: block;
+  bottom: -30px;
+  left: 0;
+  box-shadow: 22px 22px var(--color-blue);
+  z-index: -2;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float2 {
+  0% {
+    line-height: 30px;
+    transform: translateY(0px);
+  }
+  55% {
+    transform: translateY(-20px);
+  }
+  60% {
+    line-height: 10px;
+  }
+  100% {
+    line-height: 30px;
+    transform: translateY(0px);
+  }
+}
+
+</style>
+
+<script>
+    let container = document.querySelector(".container")
+    container.insertAdjacentHTML("beforebegin", `
+        <% if(user) {%>
+            <button
+                type="button"
+                class="btn btn-warning btn-lg mb-4 mt-4 fs-2 btn-anime"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                style="width: 25%"
+            >
+                Ask a question!
+            </button>
+        <% } %> 
+            `);
+</script>

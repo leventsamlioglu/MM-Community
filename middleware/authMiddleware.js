@@ -35,7 +35,8 @@ const checkTokenPage = (req, res, next) => {
 		});
 	} else {
 		res.locals.user = false;
-		res.redirect("signup");
+		// res.redirect("signup");
+		next()
 	}
 };
 
