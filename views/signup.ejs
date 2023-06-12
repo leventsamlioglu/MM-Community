@@ -33,7 +33,10 @@
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-										Just for error
+									<% if (err){ %>
+										<i><%= err['username']  %></i>
+										
+										<%}%>
 									</div>
 								</div>
 
@@ -52,7 +55,9 @@
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-										Just for error
+									<% if (err){ %>
+										<i><%= err['email']  %></i>
+									<%}%>
 									</div>
 								</div>
 
@@ -73,7 +78,9 @@
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-										Just for error
+									<% if (err){ %>
+										<i><%= err['password']  %></i>
+									<%}%>
 									</div>
 								</div>
 

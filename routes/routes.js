@@ -33,9 +33,9 @@ routes.get("/logout", controllers.logoutGet);
 
 //editPost
 
-// routes.post("/editPost", controllers.loginPost);
+ routes.get("/editPost/:id", controllers.getEditModelPage);
 routes.post("/postDelete/:id", controllers.postDelete);
-
+routes.post("/updatePost/:id",controllers.getUpdatePost)
 
 routes.post("/openai",openaiController.generateMeta)
 
