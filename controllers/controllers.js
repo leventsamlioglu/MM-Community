@@ -41,7 +41,7 @@ const postDetail = (req, res) => {
 					res.render("details", { post: result1, comments: result2 });
 				})
 				.catch((err) => console.log(err));
-			// res.render("details", { post: result1 });
+			
 		})
 		.catch((err) => console.log(err));
 };
