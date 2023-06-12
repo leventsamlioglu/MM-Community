@@ -2,6 +2,7 @@ const express = require("express");
 const routes = express.Router();
 const controllers = require("../controllers/controllers");
 const auth = require("../middleware/authMiddleware");
+const openaiController = require("../controllers/openaiController");
 
 routes.get("/", auth.checkTokenHome, controllers.homePage);
 
@@ -34,5 +35,8 @@ routes.get("/logout", controllers.logoutGet);
 
 // routes.post("/editPost", controllers.loginPost);
 routes.post("/postDelete/:id", controllers.postDelete);
+
+
+routes.post("/openai",openaiController.generateMeta)
 
 module.exports = routes;

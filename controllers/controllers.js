@@ -2,6 +2,7 @@ const Post = require("../models/postModel");
 const User = require("../models/userModel");
 const Comment = require("../models/commentModel");
 const jwt = require("jsonwebtoken");
+const { generateMeta } = require("./openaiController");
 
 const homePage = (req, res) => {
 	Post.find()
@@ -13,11 +14,13 @@ const homePage = (req, res) => {
 		.catch((err) => console.log(err));
 };
 
-const postCreate = (req, res) => {
+const postCreate = async (req, res) => {
 	let postObj = {
 		...req.body,
+		answer: await generateMeta(req.body.question),
 		owner: req.params.id,
 	};
+	console.log({postObj});
 	const newPost = new Post(postObj);
 	newPost
 		.save()
