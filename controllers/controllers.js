@@ -9,7 +9,7 @@ const homePage = (req, res) => {
 		.populate("owner")
 		.sort({ createdAt: -1 })
 		.then((result) => {
-			res.render("homePage", { posts: result });
+			res.render("homePage", { posts: result});
 		})
 		.catch((err) => console.log(err));
 };
@@ -27,9 +27,10 @@ const postCreate = async (req, res) => {
 		.then(() => {
 			res.redirect("/");
 		})
-		.catch((err) => {
-			console.log(err);
-		});
+		.catch((err) => {console.log( err.errors);
+			res.redirect("/");}
+		
+		);
 };
 
 const postDetail = (req, res) => {
@@ -41,7 +42,7 @@ const postDetail = (req, res) => {
 					res.render("details", { post: result1, comments: result2 });
 				})
 				.catch((err) => console.log(err));
-			// res.render("details", { post: result1 });
+			
 		})
 		.catch((err) => console.log(err));
 };
@@ -85,7 +86,8 @@ const commentDelete = (req, res) => {
 // Login & Sign Up
 
 const signupGet = (req, res) => {
-	res.render("signup");
+
+	res.render("signup",{ err: null });
 };
 
 const loginGet = (req, res) => {
@@ -96,9 +98,11 @@ const signupPost = async (req, res) => {
 	// Check if this user is already in the DB.
 	let existedUser = await User.findOne({ email: req.body.email });
 
+	
+
 	if (existedUser) {
 		res.render("login", {
-			error: "user is exist",
+			error: "user is exist"
 		});
 	} else {
 		let user = new User(req.body);
@@ -109,9 +113,7 @@ const signupPost = async (req, res) => {
 				res.cookie("userToken", userToken, { httpOnly: true });
 				res.redirect("/");
 			})
-			.catch((err) => {
-				throw err;
-			});
+			.catch((err)=> {res.render('signup', {err: err.errors})});
 	}
 };
 
@@ -133,6 +135,28 @@ const logoutGet = (req, res) => {
 	res.redirect("/");
 };
 
+
+const getEditModelPage =(req,res)=> {
+	Post.findById(req.params.id)	
+		.then((result) => {
+			res.render("editModal", { post: result });
+		})
+		.catch((err) => console.log(err));
+}
+
+const getUpdatePost = (req,res) => {
+
+	
+
+	console.log(commentObj1);
+	Post.findByIdAndUpdate(req.params.id,req.body,{new: true})
+	.then(() => {
+		res.redirect('editModal')
+	})
+	.catch((err) => console.log(err))
+}
+
+
 module.exports = {
 	homePage,
 	postCreate,
@@ -146,4 +170,6 @@ module.exports = {
 	loginGet,
 	loginPost,
 	logoutGet,
+	getEditModelPage,
+	getUpdatePost
 };

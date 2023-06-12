@@ -4,11 +4,11 @@ const postSchema = new mongoose.Schema(
 	{
 		title:{
 			type:String,
-			required: true,
+			required:[true, "Please enter a required!"],
 		},
 		question: {
 			type: String,
-			required: true,
+			required: [true, "Please enter a question!"],
 		},
 		answer: {
 			type:String

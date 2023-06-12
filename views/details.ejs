@@ -3,7 +3,7 @@
 	<%- include("./partials/head.ejs") %>
 
 	<body>
-		<a href="/" class="btn btn-info">Back</a>
+		<a href="/" class="btn btn-info" style="position: fixed;top: 0;"  >Back</a>
 
 		<div
 			class="card text-center m-auto mt-4 mb-4 border-info"
@@ -18,7 +18,10 @@
 				<h5 class="card-title"><%= post.title%></h5>
 				<p class="card-text"><%= post.question%></p>
 
-				<form action="/editPost/<%= post._id%>" method="post">
+				<%if(userId===post.owner._id.toString()){%>
+				<form action="/editPost/<%= post._id%>" method="get">
+
+					
 					<button
 						type="button"
 						class="btn btn-warning"
@@ -31,6 +34,7 @@
 				<form action="/postDelete/<%= post._id%>" method="post">
 					<button class="btn btn-danger">Delete</button>
 				</form>
+				<%	}%>
 			</div>
 
 			<button

@@ -22,14 +22,16 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="/editpost" method="post">
+				<form action="/updatePost<%=post._id%>" method="post">
+					<label for="title">Title</label>
+                        <input class="form-control mb-3" id="title" name="title" value="<%=post.title%>" />
 					<div class="form-group mb-3">
 						<textarea
 							class="form-control border-danger"
-							id="message"
-							name="message"
+							id="question"
+							name="question"
 							rows="3"
-							minlength="25">Message</textarea>
+							><%=post.question%></textarea>
 					</div>
 					<div class="modal-footer">
 						<button

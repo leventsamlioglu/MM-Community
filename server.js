@@ -2,10 +2,12 @@ const express = require("express");
 const exportedRoutes = require("./routes/routes");
 const mongoose = require("mongoose");
 require("dotenv").config();
+
 const app = express();
 //cookies
 const cookieParser=require('cookie-parser')
 app.use(cookieParser());
+
 
 
 const dbURI = process.env.URI;
