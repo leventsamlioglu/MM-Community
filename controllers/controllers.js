@@ -148,10 +148,10 @@ const getUpdatePost = (req,res) => {
 
 	
 
-	console.log(commentObj1);
+	
 	Post.findByIdAndUpdate(req.params.id,req.body,{new: true})
 	.then(() => {
-		res.redirect('editModal')
+		res.redirect('/')
 	})
 	.catch((err) => console.log(err))
 }
