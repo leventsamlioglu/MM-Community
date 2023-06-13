@@ -147,8 +147,6 @@ const getEditModelPage =(req,res)=> {
 }
 
 const getUpdatePost = (req,res) => {
-
-
 	Post.findByIdAndUpdate(req.params.id,req.body,{new: true})
 	.then((result) => {
 		Comment.find({ owner: req.params.id })

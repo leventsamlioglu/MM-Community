@@ -33,6 +33,7 @@
 						type="button"
 						id="editbutton"
 						class="btn btn-warning"
+						style="width: 100%;margin-top: 55px;"
 						data-bs-toggle="modal"
 						data-bs-target="#exampleModal"
 					>
@@ -40,7 +41,8 @@
 					</button>
 				</form>
 				<form action="/postDelete/<%= post._id%>" method="post">
-					<button id="deleteButton" class="btn btn-danger">Delete</button>
+					<button id="deleteButton" 
+					style="width: 100%; margin-top: 5px; "class="btn btn-danger">Delete</button>
 				</form>
 				<%	}%>
 			</div>
