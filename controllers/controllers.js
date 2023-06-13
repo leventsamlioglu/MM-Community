@@ -151,7 +151,7 @@ const getUpdatePost = (req,res) => {
 	
 	Post.findByIdAndUpdate(req.params.id,req.body,{new: true})
 	.then(() => {
-		res.redirect('/')
+		res.redirect('/posts/create/:req.params.id')
 	})
 	.catch((err) => console.log(err))
 }
