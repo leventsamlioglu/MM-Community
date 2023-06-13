@@ -1,3 +1,5 @@
+/* Like button */
+
 .block {
     width: 50px;
     height: 25px;
@@ -54,7 +56,6 @@
     color: #292d34;
   }
 
-
   /* Home Page */
 
   :root{
@@ -70,15 +71,12 @@
 
 .homePage-body {
   height: 100vh;
-  margin: 0;
   display: grid;
   place-items: center;
-  font: 1.3vw system-ui;
-  background-color: var(--color-yellow);
 }
 
 nav {
-    background-color: steelblue;
+    background-color: black;
 }
 
 .btn-anime {
@@ -150,3 +148,11 @@ nav {
     transform: translateY(0px);
   }
 }
+
+/* home page card */
+
+.card.h-100:hover{
+  scale: 1.05;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
