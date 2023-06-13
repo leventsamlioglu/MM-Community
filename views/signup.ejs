@@ -27,17 +27,19 @@
 										autofocus
 									/>
 									<label for="username">Username</label>
+									<% if (err){ %>
 									<div
 										id="usernameError"
 										class="alert alert-danger"
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-									<% if (err){ %>
+									
 										<i><%= err['username']  %></i>
 										
-										<%}%>
+										
 									</div>
+									<%}%>
 								</div>
 
 								<div class="form-floating mb-3">
@@ -49,16 +51,18 @@
 										placeholder="name@example.com"
 									/>
 									<label for="floatingInputEmail">Email address</label>
+									<% if (err){ %>
 									<div
 										id="emailError"
 										class="alert alert-danger"
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-									<% if (err){ %>
+									
 										<i><%= err['email']  %></i>
-									<%}%>
+									
 									</div>
+									<%}%>
 								</div>
 
 								<hr />
@@ -72,16 +76,18 @@
 										placeholder="Password"
 									/>
 									<label for="password">Password</label>
+									<% if (err){ %>
 									<div
 										id="passwordError"
 										class="alert alert-danger"
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-									<% if (err){ %>
+									
 										<i><%= err['password']  %></i>
-									<%}%>
+									
 									</div>
+									<%}%>
 								</div>
 
 								<div class="d-grid mb-2">

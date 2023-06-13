@@ -18,13 +18,12 @@
 				<h5 class="card-title"><%= post.title%></h5>
 				<% if (err){ %>
 				
-				<i><%= err['title']  %></i>
-				<%}%>
-				
+					<i><%= err['title']  %></i>
+					<%}%>
 				<p class="card-text"><%= post.question%></p>
 				<% if (err){ %>
-				<i><%= err['question']  %></i>
-				<%}%>
+					<i><%= err['question']  %></i>
+					<%}%>
 
 				<%if(userId===post.owner._id.toString()){%>
 				<form action="/editPost/<%= post._id%>" method="get">
@@ -33,8 +32,8 @@
 					<button
 						type="button"
 						id="editbutton"
-						style="width: 100%;margin-top: 55px;"
 						class="btn btn-warning"
+						style="width: 100%;margin-top: 55px;"
 						data-bs-toggle="modal"
 						data-bs-target="#exampleModal"
 					>
@@ -42,7 +41,8 @@
 					</button>
 				</form>
 				<form action="/postDelete/<%= post._id%>" method="post">
-					<button id="deleteButton" style="width: 100%; margin-top: 5px; " class="btn btn-danger">Delete</button>
+					<button id="deleteButton" 
+					style="width: 100%; margin-top: 5px; "class="btn btn-danger">Delete</button>
 				</form>
 				<%	}%>
 			</div>
