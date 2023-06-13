@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema(
 	{
 		title:{
 			type:String,
-			required:[true, "Please enter a required!"],
+			required:[true, "Please enter a title!"],
 		},
 		question: {
 			type: String,

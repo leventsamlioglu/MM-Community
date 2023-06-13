@@ -14,12 +14,7 @@ const generateMeta = async (req, res) => {
     max_tokens: 100
   })
 
-  console.log(description.data.choices[0].message.content)
   return description.data.choices[0].message.content
-
-//   res.status(200).json({
-//     description: description.data.choices[0].message,
-//   })
 }
 
 module.exports = {generateMeta}
