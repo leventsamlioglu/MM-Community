@@ -35,7 +35,7 @@ routes.get("/logout", controllers.logoutGet);
 
  routes.get("/editPost/:id", controllers.getEditModelPage);
 routes.post("/postDelete/:id", controllers.postDelete);
-routes.post("/updatePost/:id",controllers.getUpdatePost)
+routes.post("/updatePost/:id", auth.checkTokenPage,controllers.getUpdatePost)
 
 routes.post("/openai",openaiController.generateMeta)
 

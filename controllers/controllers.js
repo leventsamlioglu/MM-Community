@@ -55,7 +55,7 @@ const postDelete = (req, res) => {
 		});
 };
 
-const postEdit = (req, res) => {};
+
 
 const commentCreate = (req, res) => {
 	let commentObj = {
@@ -150,9 +150,16 @@ const getUpdatePost = (req,res) => {
 
 	
 	Post.findByIdAndUpdate(req.params.id,req.body,{new: true})
-	.then(() => {
-		res.redirect('/posts/create/:req.params.id')
-	})
+	.then((result) => {
+
+		Comment.find({ owner: req.params.id })
+				.sort({ createdAt: -1 })
+				.then((result2) => {
+
+					res.render("editedDetails", { post: result, comments: result2 }
+				)})
+		
+				})
 	.catch((err) => console.log(err))
 }
 
@@ -162,7 +169,6 @@ module.exports = {
 	postCreate,
 	postDetail,
 	postDelete,
-	postEdit,
 	commentCreate,
 	commentDelete,
 	signupGet,

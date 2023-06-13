@@ -9,7 +9,6 @@ const cookieParser=require('cookie-parser')
 app.use(cookieParser());
 
 
-
 const dbURI = process.env.URI;
 const port=process.env.PORT;
 mongoose
