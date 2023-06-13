@@ -34,14 +34,16 @@ const postCreate = async (req, res) => {
 };
 
 const postDetail = (req, res) => {
+	
 	Post.findById(req.params.id)
 		.then((result1) => {
 			Comment.find({ owner: req.params.id })
 				.sort({ createdAt: -1 })
 				.then((result2) => {
-					res.render("details", { post: result1, comments: result2 });
+					const err={}
+					res.render("details", { post: result1, comments: result2,err:err });
 				})
-				.catch((err) => console.log(err));
+				.catch((err) =>{res.render('details', {err: err.errors})});
 			
 		})
 		.catch((err) => console.log(err));
@@ -146,21 +148,18 @@ const getEditModelPage =(req,res)=> {
 
 const getUpdatePost = (req,res) => {
 
-	
 
-	
 	Post.findByIdAndUpdate(req.params.id,req.body,{new: true})
 	.then((result) => {
-
 		Comment.find({ owner: req.params.id })
 				.sort({ createdAt: -1 })
 				.then((result2) => {
-
-					res.render("editedDetails", { post: result, comments: result2 }
+					const err={}
+					res.render("editedDetails", { post: result, comments: result2,err:err }
 				)})
 		
 				})
-	.catch((err) => console.log(err))
+	.catch((err) =>{res.render('editedDetails', {err: err.errors})})
 }
 
 

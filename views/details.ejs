@@ -16,7 +16,15 @@
 			/>
 			<div class="card-body">
 				<h5 class="card-title"><%= post.title%></h5>
+				<% if (err){ %>
+				
+				<i><%= err['title']  %></i>
+				<%}%>
+				
 				<p class="card-text"><%= post.question%></p>
+				<% if (err){ %>
+				<i><%= err['question']  %></i>
+				<%}%>
 
 				<%if(userId===post.owner._id.toString()){%>
 				<form action="/editPost/<%= post._id%>" method="get">
