@@ -35,9 +35,9 @@ const checkTokenPage = (req, res, next) => {
 		});
 	} else {
 		res.locals.user = false;
-		res.locals.userId=false;
-		res.locals.username =false;
-		next()
+		res.locals.userId = false;
+		res.locals.username = false;
+		next();
 	}
 };
 
