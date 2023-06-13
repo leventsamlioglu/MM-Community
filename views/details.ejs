@@ -25,7 +25,7 @@
 				<% if (err){ %>
 				<i><%= err['question']  %></i>
 				<%}%>
-
+			</div>
 				<%if(userId===post.owner._id.toString()){%>
 				<form action="/editPost/<%= post._id%>" method="get">
 
@@ -34,7 +34,7 @@
 						type="button"
 						id="editbutton"
 						style="width: 100%;margin-top: 55px;"
-						class="btn btn-warning"
+						class="btn btn-outline-warning"
 						data-bs-toggle="modal"
 						data-bs-target="#exampleModal"
 					>
@@ -42,10 +42,10 @@
 					</button>
 				</form>
 				<form action="/postDelete/<%= post._id%>" method="post">
-					<button id="deleteButton" style="width: 100%; margin-top: 5px; " class="btn btn-danger">Delete</button>
+					<button id="deleteButton" style="width: 100%; margin-top: 5px; " class="btn btn-outline-danger mb-3">Delete</button>
 				</form>
 				<%	}%>
-			</div>
+		
 			<%if(userId){%>
 			<button
 				class="btn btn-primary"

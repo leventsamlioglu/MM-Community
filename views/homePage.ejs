@@ -6,7 +6,7 @@
         <nav
             class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4 p-4 w-100"
         >
-            <a class="navbar-brand" href="/">Matrix Master Community</a>
+            <a class="navbar-brand fs-3" href="/">Matrix Master Community</a>
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -27,26 +27,12 @@
                 </li>
             </ul>
         </nav>
+
         <div class="container">
-
-            
-
-            <% if(user) {%>
-            <!-- <button
-                type="button"
-                class="btn btn-warning btn-lg mb-4"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                style="width: 100%"
-            >
-                Ask a question!
-            </button> -->
-            <%}%>
-
-            <div class="users">
+          <div class="users" style="margin-top: 100px">
                 <% if (posts.length > 0) { %>
-                <h2 class="m-auto mb-4 mt-4 fs-1 text-center">All Posts</h2>
-                <div class="row row-cols-4 g-4">
+                <h2 class="m-auto mb-4 mt-4 fs-1 text-center">All Questions</h2>
+                <div class="row row-cols-3 g-4">
                     <% posts.forEach(post => { %> <% let formattedDate =
                     post.createdAt.getDate()+ "-" + (post.createdAt.getMonth()+1) + "-"
                     +post.createdAt.getFullYear() %>
