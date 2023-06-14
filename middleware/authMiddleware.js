@@ -30,6 +30,7 @@ const checkTokenPage = (req, res, next) => {
 			} else {
 				res.locals.userId = userInfo.user._id;
 				res.locals.username = userInfo.user.username;
+				res.locals.user = userInfo.user.username;
 				next();
 			}
 		});

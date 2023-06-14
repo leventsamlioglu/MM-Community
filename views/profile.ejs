@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+
+<body>
+    
+
+    <nav
+			class="navbar navbar-expand-lg navbar-dark justify-content-between mb-4 p-4 w-100"
+		>
+			<a class="navbar-brand" href="/" style="font-size: 2em"
+				>Matrix Master Community</a
+			>
+
+			<ul class="navbar-nav mr-auto" style="font-size: 1.5em">
+                <li class="nav-item active">
+					<a href="/" class="nav-link">Home Page</a>
+				</li>
+				<% if(user) {%>
+				<li class="nav-item active">
+					<a href="/profile/<%=userId%>" class="nav-link">Profile</a>
+				</li>
+				<li class="nav-item active">
+					<a href="/settings/<%=userId%>" class="nav-link">Settings</a>
+				</li>&nbsp &nbsp &nbsp &nbsp  &nbsp
+				
+				<li class="nav-item active">
+					<p class="nav-link">Welcome: <i><%= user %></i></p>
+				</li>
+				<li class="nav-item active">
+					<a href="/logout" class="nav-link">Logout</a>
+				</li>
+
+				<% } else {%>
+				<li class="nav-item active">
+					<a href="/login" class="nav-link">Login</a>
+				</li>
+				<li class="nav-item active">
+					<a href="/signup" class="nav-link"> Sign up </a>
+					<%}%>
+				</li>
+			</ul>
+		</nav>
+
+    <div class="form-floating mb-3">
+        
+        <p class="form-control"> <b>Username:</b> <%=user1.username%>
+        
+        <% if(err) { %> 
+            <i><%= err.username %></i>
+        <p>
+        <% } %>
+    </div>
+
+    <div class="form-floating mb-3">
+        <p class="form-control"><b>email:</b>  <%=user1.email%>
+        
+            <% if(err) { %> 
+                <i><%= err.email %></i>
+            <p>
+            <% } %>
+
+            
+        </div>
+      
+    
+
+        <div class="form-floating mb-3">
+    <form action="/changepassword/<%=userId%>" method="post">
+   
+        <p class="form-control"><b>password:</b>  *************
+<br>
+            <label for="password"><b>new password</b></label>
+        <input type="password" name="password" id="password">
+        <% if(message) { %> 
+            <i><%= message %></i>
+        <p>
+        <% } %>
+            <% if(err) { %> 
+                <i><%= err.password %></i>
+            <p>
+            <% } %>
+
+    </div>
+
+  
+        <button style="background-color: rgb(74, 15, 236);color: white;" type="submit">change password</button>
+    </form>
+
+    <div class="text-center mt-4"><%- include("./partials/footer.ejs") %></div>
+</body>
+</html>
