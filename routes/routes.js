@@ -32,7 +32,7 @@ routes.post("/comments/delete/:id",controllers.commentDelete)
 
 routes.get("/signup", controllers.signupGet);
 
-routes.post("/signup", controllers.signupPost);
+routes.post("/signup", auth.checkTokenPage, controllers.signupPost);
 
 routes.get("/login", controllers.loginGet);
 
@@ -45,5 +45,12 @@ routes.get("/logout", controllers.logoutGet);
 // OpenAI
 
 routes.post("/openai",openaiController.generateMeta)
+
+
+//profile & settings & change password
+
+routes.get('/profile/:id',auth.checkTokenPage,controllers.getProfilePage)
+routes.post('/changepassword/:id',auth.checkTokenPage,controllers.changePassword);
+routes.get('/settings/:id', auth.checkTokenHome, controllers.settingsPage)
 
 module.exports = routes;

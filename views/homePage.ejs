@@ -14,9 +14,20 @@
 			>
 
 			<ul class="navbar-nav mr-auto" style="font-size: 1.5em">
+				<% if(user) {%>
 				<li class="nav-item active">
-					<% if(username) {%>
+					<a href="/profile/<%=userId%>" class="nav-link">Profile</a>
+				</li>
+				<li class="nav-item active">
+					<a href="/settings/<%=userId%>" class="nav-link">Settings</a>
+				</li>&nbsp &nbsp &nbsp &nbsp  &nbsp
+				
+				<li class="nav-item active">
+
+					<p class="nav-link">Welcome: <i><%= user %></i></p>
+        <% if(username) {%>
 					<p class="nav-link">Welcome: <i><%= username %></i></p>
+
 				</li>
 				<li class="nav-item active">
 					<a href="/logout" class="nav-link">Logout</a>

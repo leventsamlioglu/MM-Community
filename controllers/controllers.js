@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Comment = require("../models/commentModel");
 const jwt = require("jsonwebtoken");
 const { generateMeta } = require("./openaiController");
+const bcrypt = require("bcrypt");
 
 const homePage = (req, res) => {
 	Post.find()
@@ -172,6 +173,32 @@ const getUpdatePost = (req, res) => {
 		});
 };
 
+const getProfilePage = (req,res)=> {
+const err={}
+const message=''
+	User.findById(req.params.id)
+	.then((user1) => res.render("profile",{user1:user1,err:err,message}))
+	.catch((err) => {
+		res.render("profile",{err:err.errors});
+	});
+
+}
+
+const changePassword = async(req,res)=> {
+	const cryptePassword= await bcrypt.hashSync(req.body.password,12);
+	
+	const err={};
+	const successMessage='password is changed';
+
+	await User.findByIdAndUpdate(req.params.id,{password: cryptePassword})
+	.then((user1)=> res.render('profile',{message:successMessage,err:err,user1:user1} )).
+	catch((err)=> res.render('profile',{err:err.errors} )
+)}
+
+const settingsPage= (req,res)=> {
+	res.render('settings')
+}
+
 module.exports = {
 	homePage,
 	postCreate,
@@ -186,4 +213,7 @@ module.exports = {
 	logoutGet,
 	getEditModelPage,
 	getUpdatePost,
+	getProfilePage,
+	changePassword,
+	settingsPage
 };
