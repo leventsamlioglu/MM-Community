@@ -23,7 +23,6 @@
 										id="username"
 										name="username"
 										placeholder="Username"
-										required
 										autofocus
 									/>
 									<label for="username">Username</label>
@@ -34,7 +33,7 @@
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-										<i><%= err['username'] %></i>
+										<i><%= err.username %></i>
 									</div>
 									<% } %>
 								</div>
@@ -55,7 +54,7 @@
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-										<i><%= err['email'] %></i>
+										<i><%= err.email %></i>
 									</div>
 									<%}%>
 								</div>
@@ -78,7 +77,7 @@
 										data-bs-dismiss="alert"
 										role="alert"
 									>
-										<i><%= err['password'] %></i>
+										<i><%= err.password %></i>
 									</div>
 									<%}%>
 								</div>
