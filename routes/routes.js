@@ -10,6 +10,16 @@ routes.post("/sendPost/:id", auth.checkTokenPage, controllers.postCreate);
 
 routes.get("/posts/create/:id", auth.checkTokenPage, controllers.postDetail);
 
+routes.post("/postDelete/:id", controllers.postDelete);
+
+// Edit&update post
+
+routes.get("/editPost/:id", controllers.getEditModelPage);
+
+routes.post("/updatePost/:id", auth.checkTokenPage,controllers.getUpdatePost)
+
+// Comment
+
 routes.post(
 	"/comments/create/:id",
 	auth.checkTokenPage,
@@ -19,6 +29,7 @@ routes.post(
 routes.post("/comments/delete/:id",controllers.commentDelete)
 
 // Login & Sign Up
+
 routes.get("/signup", controllers.signupGet);
 
 routes.post("/signup", controllers.signupPost);
@@ -31,11 +42,7 @@ routes.post("/login", controllers.loginPost);
 
 routes.get("/logout", controllers.logoutGet);
 
-//editPost
-
- routes.get("/editPost/:id", controllers.getEditModelPage);
-routes.post("/postDelete/:id", controllers.postDelete);
-routes.post("/updatePost/:id", auth.checkTokenPage,controllers.getUpdatePost)
+// OpenAI
 
 routes.post("/openai",openaiController.generateMeta)
 

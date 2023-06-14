@@ -4,7 +4,7 @@ const checkTokenHome = (req, res, next) => {
 	const isToken = req.cookies.userToken;
 
 	if (!isToken) {
-		res.locals.user = null;
+		res.locals.username = null;
 		res.locals.userId = null;
 		next();
 	} else {
@@ -12,7 +12,7 @@ const checkTokenHome = (req, res, next) => {
 			if (err) {
 				console.log(err);
 			} else {
-				res.locals.user = userInfo.user.username;
+				res.locals.username = userInfo.user.username;
 				res.locals.userId = userInfo.user._id;
 				next();
 			}
