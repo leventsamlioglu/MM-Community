@@ -173,10 +173,10 @@ const getUpdatePost = (req, res) => {
 };
 
 const getProfilePage = (req, res) => {
-	const err = {};
+	const err = '';
 	const message = "";
 	User.findById(req.params.id)
-		.then((user1) => res.render("profile", { user1: user1, err: err, message }))
+		.then((user1) => res.render("profile", { user1: user1, err, message }))
 		.catch((err) => {
 			res.render("profile", { err: err.errors });
 		});
@@ -188,8 +188,7 @@ const changePassword = async (req, res) => {
 		const user1 = "";
 		const message = "Please enter a password!";
 		res.render("profile", { message, user1, err });
-	}
-
+	}else {
 	if (req.body.password == req.body.confirmPassword) {
 		const cryptePassword = await bcrypt.hashSync(req.body.password, 12);
 
@@ -208,6 +207,7 @@ const changePassword = async (req, res) => {
 		const message = "password is not same";
 		res.render("profile", { message, user1, err });
 	}
+}
 };
 
 const settingsPage = (req, res) => {
