@@ -185,15 +185,25 @@ const message=''
 }
 
 const changePassword = async(req,res)=> {
+	
+	console.log(req.body);
+	if(req.body.password==req.body.confirmPassword) {
 	const cryptePassword= await bcrypt.hashSync(req.body.password,12);
 	
-	const err={};
+	const err='';
 	const successMessage='password is changed';
 
 	await User.findByIdAndUpdate(req.params.id,{password: cryptePassword})
-	.then((user1)=> res.render('profile',{message:successMessage,err:err,user1:user1} )).
-	catch((err)=> res.render('profile',{err:err.errors} )
-)}
+	User.findById(req.params.id).then((user1) => res.render('profile',{message:successMessage,err,user1:user1} )).
+	catch((err)=> res.render('profile',{err:err.errors} ))
+	}
+	else {
+		const err='';
+		const user1="";
+		const message='password is not same'
+		res.render('profile',{message,user1,err} )
+	}
+}
 
 const settingsPage= (req,res)=> {
 	res.render('settings')

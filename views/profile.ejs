@@ -15,20 +15,20 @@
 			>
 
 			<ul class="navbar-nav mr-auto" style="font-size: 1.5em">
-                <li class="nav-item active">
-					<a href="/" class="nav-link">Home </a>
+				
+				<% if(username) {%>
+				<li class="nav-item active">
+					<p class="nav-link">Welcome: <i><%= username %></i></p>
+
 				</li>
-				<% if(user) {%>
+
 				<li class="nav-item active">
-					<a href="/profile/<%=userId%>" class="nav-link">Profile</a>			</li>
-				
-				
-				<li class="nav-item active">
-					<p class="nav-link">Welcome: <i><%= user %></i></p>
+					<a href="/profile/<%=userId%>" class="nav-link">Profile</a>
 				</li>
 				<li class="nav-item active">
 					<a href="/logout" class="nav-link">Logout</a>
 				</li>
+
 
 				<% } else {%>
 				<li class="nav-item active">
@@ -65,12 +65,25 @@
     
 
         <div class="form-floating mb-3">
-    <form action="/changepassword/<%=userId%>" method="post">
+   
    
         <p class="form-control"><b>password:</b>  *************
 <br>
-            <label for="password"><b>new password</b></label>
+</div>
+
+<div class="form-floating mb-3">
+
+    <form action="/changepassword/<%=userId%>" method="post">
+        <div class="form-floating mb-3">
+            <labelstyle="padding: 10px;" for="password"><b>new password</b></label>
         <input type="password" name="password" id="password">
+    </div>
+        <div  style="padding: 10px;" class="form-floating mb-3">
+        <labelstyle="padding: 10px;" for="password"><b>confirm password</b></label>
+        <input type="password" name="confirmPassword" id="password">
+    </div>
+    <button style="background-color: rgb(74, 15, 236);color: white;" type="submit">change password</button>
+</form>
         <% if(message) { %> 
             <i><%= message %></i>
         <p>
@@ -79,13 +92,12 @@
                 <i><%= err.password %></i>
             <p>
             <% } %>
-
-    </div>
+     
+    
 
   
-        <button style="background-color: rgb(74, 15, 236);color: white;" type="submit">change password</button>
-    </form>
-
+    
+</div>
     <div class="text-center mt-4"><%- include("./partials/footer.ejs") %></div>
 </body>
 </html>
