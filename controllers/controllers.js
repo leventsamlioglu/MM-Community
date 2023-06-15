@@ -21,7 +21,6 @@ const postCreate = async (req, res) => {
 		answer: await generateMeta(req.body.question),
 		owner: req.params.id,
 	};
-	console.log({ postObj });
 	const newPost = new Post(postObj);
 	newPost
 		.save()
@@ -173,47 +172,47 @@ const getUpdatePost = (req, res) => {
 		});
 };
 
-const getProfilePage = (req,res)=> {
-const err={}
-const message=''
+const getProfilePage = (req, res) => {
+	const err = {};
+	const message = "";
 	User.findById(req.params.id)
-	.then((user1) => res.render("profile",{user1:user1,err:err,message}))
-	.catch((err) => {
-		res.render("profile",{err:err.errors});
-	});
+		.then((user1) => res.render("profile", { user1: user1, err: err, message }))
+		.catch((err) => {
+			res.render("profile", { err: err.errors });
+		});
+};
 
-}
-
-const changePassword = async(req,res)=> {
-
-	if((req.body.password== '') ||( req.body.confirmPassword== '')){
-		const err='';
-		const user1="";
-		const message='enter password'
-		res.render('profile',{message,user1,err} )
+const changePassword = async (req, res) => {
+	if (req.body.password == "" || req.body.confirmPassword == "") {
+		const err = "";
+		const user1 = "";
+		const message = "Please enter a password!";
+		res.render("profile", { message, user1, err });
 	}
-		
-	if(req.body.password==req.body.confirmPassword) {
-	const cryptePassword= await bcrypt.hashSync(req.body.password,12);
-	
-	const err='';
-	const successMessage='password is changed';
 
-	await User.findByIdAndUpdate(req.params.id,{password: cryptePassword})
-	User.findById(req.params.id).then((user1) => res.render('profile',{message:successMessage,err,user1:user1} )).
-	catch((err)=> res.render('profile',{err:err.errors} ))
-	}
-	else {
-		const err='';
-		const user1="";
-		const message='password is not same'
-		res.render('profile',{message,user1,err} )
-	}
-}
+	if (req.body.password == req.body.confirmPassword) {
+		const cryptePassword = await bcrypt.hashSync(req.body.password, 12);
 
-const settingsPage= (req,res)=> {
-	res.render('settings')
-}
+		const err = "";
+		const successMessage = "Password is changed!";
+
+		await User.findByIdAndUpdate(req.params.id, { password: cryptePassword });
+		User.findById(req.params.id)
+			.then((user1) =>
+				res.render("profile", { message: successMessage, err, user1: user1 })
+			)
+			.catch((err) => res.render("profile", { err: err.errors }));
+	} else {
+		const err = "";
+		const user1 = "";
+		const message = "password is not same";
+		res.render("profile", { message, user1, err });
+	}
+};
+
+const settingsPage = (req, res) => {
+	res.render("settings");
+};
 
 module.exports = {
 	homePage,
@@ -231,5 +230,5 @@ module.exports = {
 	getUpdatePost,
 	getProfilePage,
 	changePassword,
-	settingsPage
+	settingsPage,
 };

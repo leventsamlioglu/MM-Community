@@ -16,7 +16,7 @@ routes.post("/postDelete/:id", controllers.postDelete);
 
 routes.get("/editPost/:id", controllers.getEditModelPage);
 
-routes.post("/updatePost/:id", auth.checkTokenPage,controllers.getUpdatePost)
+routes.post("/updatePost/:id", auth.checkTokenPage, controllers.getUpdatePost);
 
 // Comment
 
@@ -26,7 +26,7 @@ routes.post(
 	controllers.commentCreate
 );
 
-routes.post("/comments/delete/:id",controllers.commentDelete)
+routes.post("/comments/delete/:id", controllers.commentDelete);
 
 // Login & Sign Up
 
@@ -44,13 +44,18 @@ routes.get("/logout", controllers.logoutGet);
 
 // OpenAI
 
-routes.post("/openai",openaiController.generateMeta)
-
+routes.post("/openai", openaiController.generateMeta);
 
 //profile & settings & change password
 
-routes.get('/profile/:id',auth.checkTokenPage,controllers.getProfilePage)
-routes.post('/changepassword/:id',auth.checkTokenPage,controllers.changePassword);
-routes.get('/settings/:id', auth.checkTokenHome, controllers.settingsPage)
+routes.get("/profile/:id", auth.checkTokenPage, controllers.getProfilePage);
+
+routes.post(
+	"/changepassword/:id",
+	auth.checkTokenPage,
+	controllers.changePassword
+);
+
+routes.get("/settings/:id", auth.checkTokenHome, controllers.settingsPage);
 
 module.exports = routes;
