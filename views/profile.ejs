@@ -43,20 +43,20 @@
 
     <div class="form-floating mb-3">
         
-        <p class="form-control"> <b>Username:</b> <%=user1.username%>
+        <p class="form-control"> <b>Username:</b> <%=user1.username%></p>
         
         <% if(err) { %> 
             <i><%= err.username %></i>
-        <p>
+        
         <% } %>
     </div>
 
     <div class="form-floating mb-3">
-        <p class="form-control"><b>email:</b>  <%=user1.email%>
+        <p class="form-control"><b>email:</b>  <%=user1.email%></p>
         
             <% if(err) { %> 
                 <i><%= err.email %></i>
-            <p>
+            
             <% } %>
 
             
@@ -75,22 +75,22 @@
 
     <form action="/changepassword/<%=userId%>" method="post">
         <div class="form-floating mb-3">
-            <labelstyle="padding: 10px;" for="password"><b>new password</b></label>
-        <input type="password" name="password" id="password">
+            <label  for="password"><b style="padding: 10px; margin: 5px;">new password</b></label>
+        <input  style="padding: 10px;margin: 5px;" type="password" name="password" id="password">
     </div>
         <div  style="padding: 10px;" class="form-floating mb-3">
-        <labelstyle="padding: 10px;" for="password"><b>confirm password</b></label>
-        <input type="password" name="confirmPassword" id="password">
+        <label  for="password"><b style="padding: 10px;margin: 5px;">confirm password</b></label>
+        <input style="padding: 10px;margin: 5px;"  type="password" name="confirmPassword" id="password">
     </div>
     <button style="background-color: rgb(74, 15, 236);color: white;" type="submit">change password</button>
 </form>
         <% if(message) { %> 
             <i><%= message %></i>
-        <p>
+       
         <% } %>
             <% if(err) { %> 
                 <i><%= err.password %></i>
-            <p>
+            
             <% } %>
      
     
