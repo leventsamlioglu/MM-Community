@@ -185,8 +185,14 @@ const message=''
 }
 
 const changePassword = async(req,res)=> {
-	
-	console.log(req.body);
+
+	if((req.body.password== '') ||( req.body.confirmPassword== '')){
+		const err='';
+		const user1="";
+		const message='enter password'
+		res.render('profile',{message,user1,err} )
+	}
+		
 	if(req.body.password==req.body.confirmPassword) {
 	const cryptePassword= await bcrypt.hashSync(req.body.password,12);
 	
