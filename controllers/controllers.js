@@ -192,9 +192,7 @@ const changePassword = async(req,res)=> {
 		const message='enter password'
 		res.render('profile',{message,user1,err} )
 	}
-	else {
-	
-	
+		
 	if(req.body.password==req.body.confirmPassword) {
 	const cryptePassword= await bcrypt.hashSync(req.body.password,12);
 	
@@ -212,7 +210,7 @@ const changePassword = async(req,res)=> {
 		res.render('profile',{message,user1,err} )
 	}
 }
-}
+
 const settingsPage= (req,res)=> {
 	res.render('settings')
 }
