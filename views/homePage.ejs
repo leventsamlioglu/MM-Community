@@ -43,7 +43,7 @@
 		<div class="container">
 			<div class="users" style="margin-top: 50px">
 				<% if (posts.length > 0) { %>
-				<h2 class="mb-4 text-center large">
+				<h2 class="mb-4 text-center" style="font-size: 6rem">
 					All Questions
 				</h2>
 				<div class="row row-cols-3 g-4 mt-4">
@@ -97,7 +97,7 @@
                     class="btn btn-warning btn-lg mb-4 mt-4 fs-2 btn-anime"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
-                    style="width: 25%"
+                    style="width: 25%; color: black"
                 >
                     Ask a question!
                 </button>
@@ -107,16 +107,4 @@
 	</script>
 </html>
 
-<style>
-	@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 
-	body {
-		font-family: "Audiowide", cursive;
-		color: #83af9b;
-	}
-
-	.large {
-		font-size: 6rem;
-		color: black;
-	}
-</style>
